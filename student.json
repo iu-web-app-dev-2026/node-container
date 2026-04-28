@@ -1,0 +1,16 @@
+{
+    "name": "Fakhir Noman",
+    "age": 22,
+    "student_id": "S123456",
+    "verified": true,
+    "major": "Computer Science",
+    "gpa": 3.8,
+    "courses": [
+        "Data Structures",
+        "Algorithms",
+        "Operating Systems",
+        "Database Systems"
+    ],
+    "graduation_year": 2024,
+    "email": "fakhir.noman@example.com"
+}
