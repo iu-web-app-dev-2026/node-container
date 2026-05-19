@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap Cards with Vue</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src="https://unpkg.com/vue@3"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>{{ title }}</h1>
+    
+        <div class="container">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-4 g-2">
+            <div v-for="card in cards" class="col">
+                <div class="col card">
+                    <img class="card-img-top" :src="card.img" alt="image of a panda">
+                    <div class="card-body">
+                        <h1 class="card-title">{{ card.title }}</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        
+        </div>
+    <script>
+        const { createApp } = Vue;
+
+        createApp({
+            data() { return { 
+                title: "Cards Demo",
+                cards: [
+                    {img: "imgs/panda_00001.jpg", title: "Panda Image 1"},
+                    {img: "imgs/panda_00002.jpg", title: "Panda Image 2"},
+                    {img: "imgs/panda_00003.jpg", title: "Panda Image 3"},
+                    {img: "imgs/panda_00004.jpg", title: "Panda Image 4"},
+                    {img: "imgs/panda_00005.jpg", title: "Panda Image 5"},
+                    {img: "imgs/panda_00006.jpg", title: "Panda Image 6"},
+                    {img: "imgs/panda_00007.jpg", title: "Panda Image 7"},
+                    {img: "imgs/panda_00008.jpg", title: "Panda Image 8"},
+                    {img: "imgs/panda_00009.jpg", title: "Panda Image 9"},
+                    {img: "imgs/panda_00010.jpg", title: "Panda Image 10"},
+                    {img: "imgs/panda_00011.jpg", title: "Panda Image 11"},
+                    {img: "imgs/panda_00012.jpg", title: "Panda Image 12"},
+                    {img: "imgs/panda_00013.jpg", title: "Panda Image 13"},
+                    {img: "imgs/panda_00014.jpg", title: "Panda Image 14"},
+                    {img: "imgs/panda_00015.jpg", title: "Panda Image 15"},
+                    {img: "imgs/panda_00016.jpg", title: "Panda Image 16"},
+                    {img: "imgs/panda_00017.jpg", title: "Panda Image 17"}
+                ] 
+                }
+            }
+        }).mount('#app');
+    </script>
+</body>
+</html>
