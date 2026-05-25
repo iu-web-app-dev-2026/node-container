@@ -1,6 +1,6 @@
 {
   "name": "Node.js Dev Container",
-  "image": "mcr.microsoft.com/devcontainers/javascript-node:1-20-bookworm",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:latest",
   
   "customizations": {
     "vscode": {
