@@ -55,4 +55,13 @@ describe('Rideshare App E2E Tests', () => {
     const title = await driver.getTitle();
     expect(title).toContain('Rideshare');
   });
+
+  test('should display a button', async () => {
+    await driver.get('http://localhost:8080/rideshare.html');
+    const addRideButton = await driver.wait(
+      until.elementLocated(By.className('btn-success')),
+      10000
+    );
+    expect(addRideButton).toBeTruthy();
+  });
 }, 60000);
