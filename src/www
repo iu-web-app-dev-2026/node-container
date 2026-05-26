@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Create Ride</title>
+  <style>label{display:block;margin-top:.6rem}</style>
+</head>
+<body>
+  <h1>Create a Ride</h1>
+  <form id="rideForm">
+    <label>Contact name
+      <input id="contactName" type="text" required />
+    </label>
+    <label>Contact email
+      <input id="contactEmail" type="email" />
+    </label>
+    <label>Contact phone
+      <input id="contactPhone" type="tel" />
+    </label>
+    <label>Start date & time
+      <input id="startDateTime" type="datetime-local" required />
+    </label>
+    <label>Start town
+      <input id="startTown" type="text" required />
+    </label>
+    <label>Destination town
+      <input id="destinationTown" type="text" required />
+    </label>
+    <label>Available seats
+      <input id="availableSeats" type="number" min="0" value="1" required />
+    </label>
+    <button type="submit">Create Ride</button>
+  </form>
+
+  <div id="msg" style="margin-top:1rem;color:green"></div>
+
+  <script>
+    const form = document.getElementById('rideForm');
+    const msg = document.getElementById('msg');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      msg.textContent = '';
+
+      const contactName = document.getElementById('contactName').value.trim();
+      const contactEmail = document.getElementById('contactEmail').value.trim();
+      const contactPhone = document.getElementById('contactPhone').value.trim();
+      const startDateTimeRaw = document.getElementById('startDateTime').value;
+      const startTown = document.getElementById('startTown').value.trim();
+      const destinationTown = document.getElementById('destinationTown').value.trim();
+      const availableSeats = parseInt(document.getElementById('availableSeats').value, 10);
+
+      // Convert datetime-local to ISO 8601
+      const startDateTime = startDateTimeRaw ? new Date(startDateTimeRaw).toISOString() : null;
+
+      const body = {
+        contact: { name: contactName, email: contactEmail || null, phone: contactPhone || null },
+        startDateTime,
+        startTown,
+        destinationTown,
+        availableSeats
+      };
+
+      try {
+        const res = await fetch('/v1/rides', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body)
+        });
+        if (res.ok) {
+          msg.style.color = 'green';
+          msg.textContent = 'Ride created successfully.';
+          form.reset();
+        } else {
+          const text = await res.text().catch(()=>null);
+          msg.style.color = 'red';
+          msg.textContent = 'Error: ' + (text || res.status + ' ' + res.statusText);
+        }
+      } catch (err) {
+        msg.style.color = 'red';
+        msg.textContent = 'Network error: ' + err.message;
+      }
+    });
+  </script>
+</body>
+</html>
